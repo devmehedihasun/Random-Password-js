@@ -22,3 +22,19 @@ function createPassword() {
     // Assign the generated password to the input box
     passwordBox.value = password;
 }
+
+
+function copyPassword() {
+    const passwordBox = document.getElementById("Password"); 
+    if (passwordBox.value) { 
+        navigator.clipboard.writeText(passwordBox.value) 
+            .then(() => {
+                alert("Password copied to clipboard!");
+            })
+            .catch((err) => {
+                console.error("Failed to copy password:", err);
+            });
+    } else {
+        alert("No password to copy!");
+    }
+}
