@@ -7,34 +7,37 @@ const number = "1234";
 const symbol = "@#$%&*{}[]<>/=";
 
 const allChars = upperCase + lowerCase + number + symbol;
+const genBtn = document.querySelector("#genBtn");
 
 function createPassword() {
-    let password = "";
-    password += upperCase[Math.floor(Math.random() * upperCase.length)];
-    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
-    password += number[Math.floor(Math.random() * number.length)];
-    password += symbol[Math.floor(Math.random() * symbol.length)];
+  let password = "";
+  password += upperCase[Math.floor(Math.random() * upperCase.length)];
+  password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+  password += number[Math.floor(Math.random() * number.length)];
+  password += symbol[Math.floor(Math.random() * symbol.length)];
 
-    while (length > password.length) {
-        password += allChars[Math.floor(Math.random() * allChars.length)];
-    }
+  while (length > password.length) {
+    password += allChars[Math.floor(Math.random() * allChars.length)];
+  }
 
-    // Assign the generated password to the input box
-    passwordBox.value = password;
+  // Assign the generated password to the input box
+  passwordBox.value = password;
 }
 
+genBtn.addEventListener("click", createPassword);
 
 function copyPassword() {
-    const passwordBox = document.getElementById("Password"); 
-    if (passwordBox.value) { 
-        navigator.clipboard.writeText(passwordBox.value) 
-            .then(() => {
-                alert("Password copied to clipboard!");
-            })
-            .catch((err) => {
-                console.error("Failed to copy password:", err);
-            });
-    } else {
-        alert("No password to copy!");
-    }
+  const passwordBox = document.getElementById("Password");
+  if (passwordBox.value) {
+    navigator.clipboard
+      .writeText(passwordBox.value)
+      .then(() => {
+        alert("Password copied to clipboard!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy password:", err);
+      });
+  } else {
+    alert("No password to copy!");
+  }
 }
